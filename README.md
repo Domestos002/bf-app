@@ -1,4 +1,4 @@
-# bf-test
+# bf-app
 
 ## Project setup
 ```
