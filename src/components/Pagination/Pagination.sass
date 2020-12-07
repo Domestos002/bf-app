@@ -1,0 +1,42 @@
+@import "@styles/variables"
+@import "@styles/mixins"
+
+.pagination
+  display: flex
+  &__list
+    display: flex
+    +respond-to($medium)
+      display: none
+  &__link
+    display: block
+    padding: 15px 20px
+    font-size: 14px
+    font-family: $font-family-base
+    font-weight: 400
+    background-color: $white
+    color: $graphite
+    cursor: pointer
+    user-select: none
+    & + &
+      margin-left: 15px
+    & + .pagination__dummy
+      margin-left: 10px
+    &:hover
+      +trans('background-color')
+    &--active, &:hover
+      background-color: $orange
+      color: $white
+  &__dummy
+    padding: 15px 20px
+    font-size: 14px
+    font-family: $font-family-base
+    font-weight: 400
+    user-select: none
+    & + .pagination__link
+      margin-left: 10px
+  &__prev
+    margin-right: 15px
+  &__next
+    margin-left: 15px
+    +respond-to($small)
+      margin-left: 0

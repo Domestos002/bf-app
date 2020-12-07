@@ -1,0 +1,15 @@
+@import "@styles/variables"
+@import "@styles/mixins"
+
+@import "@components/data-block/data-block"
+@import "@components/table/table"
+
+.list
+  &__pagination
+    margin-top: 20px
+    +respond-to($small)
+      padding: 0 15px
+  &__inner
+    +respond-to($xsmall)
+      min-width: 480px
+      overflow-x: auto

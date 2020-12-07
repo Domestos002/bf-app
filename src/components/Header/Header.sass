@@ -1,0 +1,66 @@
+@import "@styles/variables"
+@import "@styles/mixins"
+
+.header
+  width: 100%
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.06)
+  padding: 15px 0
+  border-bottom: 3px solid $gray2
+  box-sizing: border-box
+  +respond-to($small)
+    z-index: 10
+    position: relative
+    margin-left: 50px
+    padding: 0 50px 0 0
+    box-shadow: none
+    border-bottom: none
+  &__inner
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 0 20px
+    margin: 0 auto
+    +respond-to($small)
+      padding: 0 0 0 15px
+      justify-content: flex-end
+  &__person
+    display: flex
+    align-items: center
+    +respond-to($small)
+      padding: 15px
+      border-left: 1px solid $gray4
+  &__avatar
+    width: 30px
+    height: 30px
+    border-radius: 100%
+    overflow: hidden
+    +respond-to($small)
+      width: 20px
+      height: 20px
+  &__avatar-pic
+    width: 100%
+    height: 100%
+    object-fit: cover
+  &__name
+    margin-left: 12px
+    font-size: 17px
+    line-height: em(20,17)
+    font-family: $font-family-base
+    +respond-to($small)
+      display: none
+  &__logo
+    text-decoration: none
+    font-size: 0
+    line-height: 0
+    +respond-to($small)
+      position: absolute
+      left: calc(50% - 50px)
+      top: calc(50% + 1px)
+      transform: translate(-50%,-50%)
+  &__logo-pic
+    height: 27px
+    width: 201px
+    color: $graphite
+    +respond-to($small)
+      width: 170px
+      height: 23px

@@ -1,0 +1,65 @@
+@function em($pixels, $context)
+  @return #{$pixels/$context}em
+
+@function vw($pixels, $context)
+  @return #{($pixels/$context)*100}vw
+
+@function vmax($pixels, $context)
+  @return #{($pixels/$context)*100}vmax
+
+@function vh($pixels, $context)
+  @return #{($pixels/$context)*100}vh
+
+=font($alias, $name, $fontWeight: null)
+  @font-face
+    font-family: $alias
+    src: url("../assets/fonts/" + $name + ".woff2") format("woff2")
+    font-weight: $fontWeight
+    font-display: swap
+    font-style: normal
+
+@function grid($columns, $totalColumns: 12)
+  @return percentage($columns / $totalColumns)
+
+=grid ($columns, $totalColumns: 12)
+  width: percentage($columns / $totalColumns)
+
+=respond-to($media)
+  @media only screen and (max-width: $media - 1)
+    @content
+
+=min-respond-to($media)
+  @media only screen and (min-width: $media)
+    @content
+
+=range-respond-to($start, $end)
+  @media only screen and (min-width: $start) and (max-width: $end - 1)
+    @content
+
+=trans($properties, $trans: .65s cubic-bezier(.18,.9,.58,1))
+  transition: $trans
+  transition-property: #{$properties}
+
+=chevron($size, $border-size, $direction, $color)
+  z-index: 1
+  content: ''
+  display: inline-block
+  width: $size
+  height: $size
+  background: transparent
+  @if $direction == t
+    border: transparent
+    border-top: $border-size solid $color
+    border-left: $border-size solid $color
+  @else if $direction == r
+    border: transparent
+    border-top: $border-size solid $color
+    border-right: $border-size solid $color
+  @else if $direction == b
+    border: transparent
+    border-bottom: $border-size solid $color
+    border-right: $border-size solid $color
+  @else if $direction == l
+    border: transparent
+    border-bottom: $border-size solid $color
+    border-left: $border-size solid $color

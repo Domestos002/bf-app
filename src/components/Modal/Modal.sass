@@ -1,0 +1,78 @@
+@import "@styles/variables"
+@import "@styles/mixins"
+
+.modal
+  position: fixed
+  top: 0
+  bottom: 0
+  right: 0
+  background: $graphite
+  text-align: center
+  overflow-y: scroll
+  overflow-x: hidden
+  transition: opacity .15s linear
+  white-space: nowrap
+  display: none
+  font-size: 0
+  left: 0
+  z-index: 11
+  opacity: 0
+  -webkit-overflow-scrolling: touch
+  -ms-touch-action: cross-slide-y pinch-zoom double-tap-zoom
+  touch-action: cross-slide-y pinch-zoom double-tap-zoom
+  -webkit-transform: translateZ(0)
+  transform: translateZ(0)
+  &--active
+    opacity: 1
+    display: block
+  &::before
+    content: ''
+    display: inline-block
+    height: 100%
+    vertical-align: middle
+  &__dialog
+    position: relative
+    z-index: 4
+    width: 100%
+    max-width: 620px
+    padding: 30px
+    margin-left: auto
+    margin-right: auto
+    display: inline-flex
+    flex-direction: column
+    vertical-align: middle
+    box-sizing: border-box
+    +respond-to($small)
+      padding: 20px
+  &__close-icon
+    width: 18px
+    height: 18px
+    color: $gray
+  &__close
+    padding: 10px
+    cursor: pointer
+    position: relative
+    right: -9px
+    top: 2px
+  &__title
+    color: $white
+    font-size: 35px
+    white-space: normal
+    line-height: 1.2em
+    font-weight: 500
+    font-family: $font-family-base
+    text-align: left
+    +respond-to($small)
+      font-size: 25px
+  &__inner
+    margin-top: 20px
+    background-color: $white
+    padding: 40px
+    +respond-to($small)
+      padding: 30px 20px
+  &__head
+    display: flex
+    align-items: center
+    justify-content: space-between
+  &__submit
+    margin-top: 30px

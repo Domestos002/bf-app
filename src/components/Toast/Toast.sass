@@ -1,0 +1,49 @@
+@import "@styles/variables.sass"
+@import "@styles/mixins.sass"
+
+.toast
+  position: fixed
+  top: 70px
+  right: 20px
+  z-index: 999
+  &__message
+    position: relative
+    border-radius: 2px
+    color: $white
+    background-color: $gray
+    font-family: $font-family-base
+    box-shadow: 0 5px 7px rgba($gray,.4)
+    font-size: 16px
+    line-height: 1.2em
+    & + &
+      margin-top: 20px
+    &--success
+      background-color: $green
+    &--error
+      background-color: $red
+  &__body
+    padding: 15px
+  &__icon
+    width: 30px
+    height: 30px
+    background-repeat: no-repeat
+    background-size: 100%
+
+.toast-enter
+  opacity: 0.5 !important
+
+.toast-enter-active
+  +trans('opacity')
+
+.toast-enter-to
+  opacity: 1
+
+.toast-leave
+  opacity: 0.5
+
+.toast-leave-active
+  opacity: 0
+  +trans('opacity')
+
+.toast-leave-to
+  opacity: 0

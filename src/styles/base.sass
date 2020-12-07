@@ -1,0 +1,65 @@
+@import "~reset-css/sass/reset"
+@import "@styles/variables"
+@import "@styles/mixins"
+@import "@styles/grid"
+
++font("Futura PT", "FuturaPT-Book", 400)
++font("Futura PT", "FuturaPT-Demi", 500)
+//+font("Futura PT", "FuturaPT-Bold", 700)
+
+body
+  height: 100vh
+  &.ovh
+    overflow: hidden
+    .site-wrapper
+      position: static
+
+.site-wrapper
+  height: 100vh
+  display: flex
+  flex-direction: column
+  overflow-x: hidden
+  position: relative
+  min-width: 300px
+
+.content
+  flex-grow: 1
+  display: flex
+
+.container
+  padding: 0 20px
+  margin: 0 auto
+
+.main
+  flex-grow: 1
+  width: 100%
+  background-color: $lightgrey
+  padding: 37px 60px 60px 40px
+  &__container
+    max-width: 1200px
+    box-sizing: border-box
+  +respond-to($desktop)
+    padding: 37px 40px 60px 40px
+  +respond-to($medium)
+    padding: 37px 20px 60px 20px
+  +respond-to($small)
+    padding: 45px 0 40px 0
+
+.copyright
+  width: 100%
+  padding: 40px 60px
+  display: flex
+  justify-content: flex-end
+  box-sizing: border-box
+  +respond-to($small)
+    padding: 20px
+  &__text
+    text-align: right
+    max-width: 560px
+    font-family: $font-family-base
+    color: $graphite
+    font-size: 14px
+    font-weight: 400
+    line-height: em(16,14)
+    +respond-to($small)
+      text-align: left

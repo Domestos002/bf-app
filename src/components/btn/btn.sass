@@ -1,0 +1,31 @@
+.btn
+  cursor: pointer
+  display: inline-block
+  padding: 16px 24px
+  text-transform: uppercase
+  color: $white
+  border: 2px solid $orange
+  background-color: $orange
+  border-radius: 3px
+  text-align: center
+  box-shadow: none
+  font-family: $font-family-base
+  font-size: 14px
+  font-weight: 500
+  letter-spacing: 0.54px
+  +trans('border-color, color, background-color')
+  &:hover, &:active, &:focus
+    background-color: darken($orange,20%)
+    border-color: darken($orange,20%)
+    outline: none
+  &--outline
+    color: $orange
+    background-color: transparent
+    border: 2px solid $orange
+    &:hover, &:active, &:focus
+      background-color: $orange
+      color: $white
+      border-color: $orange
+  &--block
+    display: block
+    width: 100%

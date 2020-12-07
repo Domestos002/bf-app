@@ -1,0 +1,48 @@
+.data-block
+  background-color: $white
+  padding: 35px 40px 40px 40px
+  +respond-to($medium)
+    padding: 25px 20px 30px 20px
+  &__title
+    font-family: $font-family-base
+    font-weight: 500
+    color: $graphite
+    font-size: 25px
+    line-height: 1em
+    & + .data-block__subtitle
+      margin-top: 13px
+    &--small
+      font-size: 19px
+  &__subtitle
+    font-family: $font-family-base
+    font-weight: 400
+    color: $graphite
+    font-size: 19px
+    line-height: 20px
+    span
+      color: $orange
+      cursor: pointer
+    &--small
+      font-size: 17px
+  &__list
+    overflow: hidden
+  &__head-title
+    font-size: 19px
+    font-family: $font-family-base
+    font-weight: 500
+    text-transform: uppercase
+    line-height: 1.3em
+    letter-spacing: 0.76px
+    padding-bottom: 13px
+    border-bottom: 3px solid $gray3
+  &__item
+    &:not(:last-child):not(.col)
+      border-bottom: 1px solid $gray3
+      padding-bottom: 25px
+    &.col-sm--12:not(:last-child)
+      +respond-to($small)
+        border-bottom: 1px solid $gray3
+        padding-bottom: 25px
+    &:not(:first-child)
+      padding-top: 28px
+
