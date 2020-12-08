@@ -3,46 +3,109 @@
   padding: 35px 40px 40px 40px
   +respond-to($medium)
     padding: 25px 20px 30px 20px
+  &--vertical
+    .data-block
+      &__subtitle
+        margin-top: 13px
+        &--small
+          margin-top: 11px
+      &__item
+        &:not(:last-child)
+          padding-bottom: 27px
+        &:not(:first-child)
+          padding-top: 25px
+        &--list:not(:first-child)
+          +min-respond-to($small)
+            padding-top: 0
+        &--list
+          +min-respond-to($small)
+            width: 100%
+            display: flex
+            flex-wrap: wrap
+            .data-block__item
+              padding-top: 25px
+              padding-bottom: 0
+              flex-grow: 1
+              flex-basis: 0
+              box-sizing: border-box
+              &:not(:first-child)
+                padding-left: 40px
+              &:not(:last-child)
+                +min-respond-to($small)
+                  border-bottom: none
+  &--horizontal
+     .data-block
+      &__item
+        padding-top: 25px
+        display: flex
+        &:not(:last-child)
+          padding-bottom: 25px
+          +respond-to($small)
+            padding-bottom: 28px
+        +respond-to($small)
+          display: block
+          &:last-child
+            padding-bottom: 28px
+            border-bottom: 1px solid $gray3
+      &__title
+        +min-respond-to($small)
+          width: 41%
+          padding-right: 40px
+        +respond-to($desktop)
+          width: 44%
+      &__subtitle
+        +respond-to($small)
+          margin-top: 9px
+  &__submit-btn
+    width: 100%
+    margin-top: 30px
+    display: none
+    +respond-to($small)
+      display: block
   &__title
     font-family: $font-family-base
     font-weight: 500
     color: $graphite
     font-size: 25px
-    line-height: 1em
-    & + .data-block__subtitle
-      margin-top: 13px
+    line-height: 25px
+    box-sizing: border-box
     &--small
       font-size: 19px
+      line-height: 23px
   &__subtitle
     font-family: $font-family-base
     font-weight: 400
     color: $graphite
+    display: block
     font-size: 19px
     line-height: 20px
-    span
-      color: $orange
-      cursor: pointer
     &--small
       font-size: 17px
-  &__list
-    overflow: hidden
+  &__link
+    color: $orange
+    cursor: pointer
+    +trans('color')
+    &:hover, &:active, &:focus
+      color: darken($orange, 20%)
+  &__link2
+    text-decoration: none
+    color: $graphite
+    display: inline
+    border-bottom: 1px solid $gray4
+    +trans('border-bottom-color')
+    &:hover, &:active, &:focus
+      border-bottom-color: $orange
   &__head-title
     font-size: 19px
+    line-height: 20px
     font-family: $font-family-base
     font-weight: 500
     text-transform: uppercase
-    line-height: 1.3em
     letter-spacing: 0.76px
     padding-bottom: 13px
     border-bottom: 3px solid $gray3
   &__item
-    &:not(:last-child):not(.col)
+    width: 100%
+    flex-grow: 1
+    &:not(:last-child)
       border-bottom: 1px solid $gray3
-      padding-bottom: 25px
-    &.col-sm--12:not(:last-child)
-      +respond-to($small)
-        border-bottom: 1px solid $gray3
-        padding-bottom: 25px
-    &:not(:first-child)
-      padding-top: 28px
-

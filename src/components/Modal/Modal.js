@@ -1,10 +1,13 @@
 import SvgIcon from "../SvgIcon/SvgIcon.vue";
 import Selector from "../Selector/Selector.vue";
+import axios from "axios";
+import settings from "../../settings";
 
 export default ({
     name: 'Modal',
     data() {
         return {
+            coordinatorList: [],
             currentCoordinator: {}
         };
     },
@@ -13,10 +16,6 @@ export default ({
         showModal: {
             type: Boolean,
             default: false,
-        },
-        coordinatorList: {
-            type: Array,
-            default: [],
         },
         coordinator: {
             type: Object,
@@ -41,7 +40,9 @@ export default ({
             }
         },
         onSubmit() {
-            this.$emit('submit', this.currentCoordinator);
+            if(this.currentCoordinator.id !== this.coordinator.id) {
+                this.$emit('submit', this.currentCoordinator);
+            }
         },
 
         getScrollbarWidth() {
@@ -58,7 +59,15 @@ export default ({
             outer.parentNode.removeChild(outer);
 
             return scrollbarWidth;
-        }
+        },
+
+        getCoordinators() {
+            axios({
+                method: 'get',
+                url: `${settings.apiAddress}/coordinator`,
+            })
+            .then(response => this.coordinatorList = response.data.data);
+        },
     },
 
     watch: {
@@ -73,6 +82,10 @@ export default ({
             if (val) {
                 document.body.classList.add('ovh');
                 document.body.style.paddingRight = `${this.getScrollbarWidth()}px`;
+
+                if(!this.coordinatorList.length) {
+                    this.getCoordinators();
+                }
             } else {
                 document.body.classList.remove('ovh');
                 document.body.style.paddingRight = '';

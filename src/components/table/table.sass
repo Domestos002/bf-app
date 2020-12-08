@@ -1,11 +1,10 @@
 .table
   width: 100%
-  +respond-to($xsmall)
-    //table-layout: fixed
   td
     white-space: normal
     padding: 20px 25px
     font-size: 16px
+    font-family: $font-family-base
     &:last-child
       text-align: center
     +respond-to($desktop)
@@ -20,10 +19,6 @@
       box-sizing: border-box
       &:nth-child(4)
         display: none
-      //&:last-child
-        width: 64px
-      //&:first-child
-        width: 20%
   thead
     td
       background-color: $graphite

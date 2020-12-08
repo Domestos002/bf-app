@@ -22,25 +22,15 @@ export default {
 
     mounted() {
         this.getWindowWidth();
-        this.collapseOnTabletOrLess();
+        this.collapseOnMobile();
 
         window.addEventListener('resize', () => {
-
             this.getWindowWidth();
-            this.collapseOnTabletOrLess();
+            this.collapseOnMobile();
         })
     },
 
     computed: {
-        isTabletOrLess() {
-            return this.windowWidth <= 1023
-        },
-
-        isTablet() {
-            return this.windowWidth <= 1023
-                && this.windowWidth >= 576;
-        },
-
         isMobile() {
             return this.windowWidth <= 575;
         },
@@ -65,13 +55,11 @@ export default {
 
     methods: {
         toggleMenu() {
-            if(!this.isTablet) {
-                this.$emit('toggleMenu');
-            }
+            this.$emit('toggleMenu');
         },
 
-        collapseOnTabletOrLess() {
-            if(this.isTabletOrLess && !this.collapsed) {
+        collapseOnMobile() {
+            if(this.isMobile && !this.collapsed) {
                 this.$emit('toggleMenu');
             }
         },

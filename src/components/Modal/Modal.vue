@@ -3,9 +3,9 @@
         <div class="modal__dialog">
             <div class="modal__head">
                 <p class="modal__title">Назначить координатора</p>
-                <div @click="closeModal" class="modal__close">
+                <button @click="closeModal" class="modal__close">
                     <SvgIcon name="close" class="modal__close-icon" />
-                </div>
+                </button>
             </div>
             <div class="modal__inner">
                 <Selector

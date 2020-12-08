@@ -3,19 +3,19 @@
         <Header/>
         <div class="content">
             <Menu :collapsed="menuCollapsed" @toggleMenu="toggleMenu"/>
-            <div class="main">
+            <main class="main" :class="{ 'main--collapsed': !menuCollapsed }">
                 <div class="main__container">
-                    <router-view/>
+                    <router-view :collapsed="!menuCollapsed"/>
                 </div>
-            </div>
+            </main>
         </div>
-        <div class="copyright">
-            <div class="copyright__text">
+        <footer class="copyright">
+            <p class="copyright__text">
                 Проект реализуется с использованием гранта Президента РФ на развитие гражданского общества,
                 предоставленного
                 Фондом президентских грантов
-            </div>
-        </div>
+            </p>
+        </footer>
         <Toast />
     </div>
 </template>

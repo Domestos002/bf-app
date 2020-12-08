@@ -22,7 +22,6 @@ export function formatDate(string) {
     let year = date.getFullYear();
 
     month = month < 10 ? `0${month}` : month;
-    day = day < 10 ? `0${day}` : day;
 
     return `${day}.${month}.${year}`
 }

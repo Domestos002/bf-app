@@ -1,5 +1,5 @@
 <template>
-    <div class="selector" :class="{'selector--opened': isOpened}">
+    <div class="selector" :class="{'selector--opened': isOpened}" @keydown="onKeyDown">
         <!-- элемент для открытия селекта через tab -->
         <div class="selector__filler" contentEditable @focus="onFocus" @blur="onBlur"></div>
 
@@ -15,7 +15,7 @@
         <div class="selector__dropdown" v-if="isOpened">
             <div class="selector__list" @click="itemsClick">
                 <div class="selector__item"
-                     :class="item.active ? 'selector__item--active' : ''"
+                     :class="item.highlight ? 'selector__item--active' : ''"
                      :data-id="item.id" :key="item.id" v-for="item in optionsArr">
                     {{ item.val }}
                 </div>

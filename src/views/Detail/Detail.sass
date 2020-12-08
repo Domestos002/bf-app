@@ -6,14 +6,23 @@
 
 .detail
   position: relative
+  &--collapsed
+    +respond-to($medium)
+      .data-block
+        padding-left: 15px
+        padding-right: 15px
+      .detail
+        &__top
+          flex-direction: column
+          align-items: flex-start
+        &__submit-btn
+          margin-top: 10px
   &__top
     display: flex
     justify-content: space-between
     align-items: center
-    min-height: 50px
     +respond-to($small)
       padding: 0 20px
-      min-height: initial
   &__conditions
     margin-top: 16px
     +respond-to($small)
@@ -22,16 +31,11 @@
         font-size: 17px
   &__contacts
     margin-top: 40px
+    .data-block
+      padding-top: 37px
     +respond-to($small)
       margin-top: 20px
-      .data-block
-        padding-top: 36px
-      .data-block__item
-          .col:not(:first-child)
-            margin-top: 9px
-          &:last-child
-            border-bottom: 1px solid $gray3
-            padding-bottom: 25px
+
   &__title
     font-size: 35px
     line-height: 1em
@@ -41,10 +45,5 @@
     +respond-to($medium)
       font-size: 30px
   &__submit-btn
-    position: absolute
-    top: 0
-    right: 0
     +respond-to($small)
-      position: static
-      margin-top: 30px
-      display: block
+      display: none

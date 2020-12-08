@@ -1,39 +1,39 @@
 <template>
-  <svg :class="className" xmlns="http://www.w3.org/2000/svg">
-    <title v-if="title">{{ title }}</title>
-    <use :xlink:href="iconPath" xmlns:xlink="http://www.w3.org/1999/xlink"/>
-  </svg>
+    <svg :class="className" xmlns="http://www.w3.org/2000/svg">
+        <title v-if="title" v-html="title"></title>
+        <use :xlink:href="iconPath" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+    </svg>
 </template>
 
 <script>
-export default {
-  name: 'svg-icon',
+    export default {
+        name: 'svg-icon',
 
-  props: {
-    name: {
-      type: String,
-      required: true
-    },
+        props: {
+            name: {
+                type: String,
+                required: true
+            },
 
-    title: {
-      type: String,
-      default: null
-    }
-  },
+            title: {
+                type: String,
+                default: null
+            }
+        },
 
-  computed: {
-    iconPath() {
-      let icon = require(`@icons/${this.name}.svg`);
-      if (Object.prototype.hasOwnProperty.call(icon, 'default')) {
-        icon = icon.default;
-      }
+        computed: {
+            iconPath() {
+                let icon = require(`@icons/${this.name}.svg`);
+                if (Object.prototype.hasOwnProperty.call(icon, 'default')) {
+                    icon = icon.default;
+                }
 
-      return icon.url;
-    },
+                return icon.url;
+            },
 
-    className() {
-      return 'svg-icon svg-icon--' + this.name;
-    }
-  }
-};
+            className() {
+                return 'svg-icon svg-icon--' + this.name;
+            }
+        }
+    };
 </script>

@@ -44,10 +44,14 @@ body
     padding: 37px 20px 60px 20px
   +respond-to($small)
     padding: 45px 0 40px 0
+  &--collapsed
+    +respond-to($medium)
+      padding-left: 15px
+      padding-right: 15px
 
 .copyright
   width: 100%
-  padding: 40px 60px
+  padding: 39px 60px 34px 60px
   display: flex
   justify-content: flex-end
   box-sizing: border-box
@@ -60,6 +64,6 @@ body
     color: $graphite
     font-size: 14px
     font-weight: 400
-    line-height: em(16,14)
+    line-height: 16px
     +respond-to($small)
       text-align: left

@@ -1,17 +1,17 @@
 <template>
-    <div class="header">
+    <header class="header">
         <div class="header__inner">
             <router-link to="/" class="header__logo">
-                <SvgIcon class="header__logo-pic" name="logo"></SvgIcon>
+                <SvgIcon class="header__logo-pic" name="logo" title="Логотип &laquo;Нужна помощь&raquo;"></SvgIcon>
             </router-link>
             <div class="header__person">
-                <div class="header__avatar">
-                    <img class="header__avatar-pic" src="@images/avatar.png" alt="">
+                <div class="header__avatar" v-if="user">
+                    <img class="header__avatar-pic" :src="user.avatar" alt="Аватар">
                 </div>
-                <p class="header__name">Иван Иванов</p>
+                <p class="header__name" v-if="user">{{ user.name }}</p>
             </div>
         </div>
-    </div>
+    </header>
 </template>
 
 <script src="./Header.js"></script>

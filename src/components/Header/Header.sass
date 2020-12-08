@@ -26,6 +26,8 @@
   &__person
     display: flex
     align-items: center
+    +min-respond-to($small)
+      min-height: 30px
     +respond-to($small)
       padding: 15px
       border-left: 1px solid $gray4
@@ -52,13 +54,15 @@
     text-decoration: none
     font-size: 0
     line-height: 0
+    position: relative
+    top: 1px
     +respond-to($small)
       position: absolute
       left: calc(50% - 50px)
       top: calc(50% + 1px)
       transform: translate(-50%,-50%)
   &__logo-pic
-    height: 27px
+    height: 29px
     width: 201px
     color: $graphite
     +respond-to($small)

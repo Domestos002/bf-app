@@ -8,7 +8,7 @@
   background-color: $graphite
   display: flex
   overflow: hidden
-  +min-respond-to($desktop)
+  +min-respond-to($medium)
     +trans('width')
   +respond-to($small)
     width: 100%
@@ -26,7 +26,7 @@
     +min-respond-to($small)
       .menu
         &__item-text, &__collapse-text
-          font-size: 0
+          display: none
   &__inner, &__list
     height: 100%
   &__inner
@@ -37,10 +37,26 @@
       padding-top: 22px
   &__collapse-btn
     display: flex
+    width: 100%
+    box-shadow: none
+    border: none
+    font-family: $font-family-base
     align-items: center
-    padding: 15px 20px
+    padding: 14px 20px 13px 20px
     background-color: $black
     cursor: pointer
+    +trans('background-color')
+    &:hover, &:active, &:focus
+      border: none
+      outline: none
+    +min-respond-to($small)
+      &:hover, &:active, &:focus
+        border: none
+        outline: none
+        background-color: darken($black, 2%)
+        .menu
+          &__collapse-text, &__collapse-icon
+            color: $white
     +respond-to($small)
       display: inline-flex
       background-color: $white
@@ -51,6 +67,7 @@
     height: 20px
     flex-shrink: 0
     color: $gray
+    +trans('color')
     +respond-to($small)
       color: $graphite
   &__collapse-text
@@ -62,6 +79,7 @@
     user-select: none
     white-space: nowrap
     line-height: 20px
+    +trans('color')
     +respond-to($small)
       display: none
   &__item-icon
@@ -74,7 +92,7 @@
   &__item
     display: flex
     align-items: flex-start
-    padding: 14px 20px
+    padding: 15px 20px
     text-decoration: none
     +trans('background-color')
     +min-respond-to($small)
@@ -85,6 +103,6 @@
     font-size: 17px
     font-family: $font-family-base
     line-height: 20px
-    margin-left: 17px
+    margin-left: 16px
     +respond-to($small)
       color: $graphite

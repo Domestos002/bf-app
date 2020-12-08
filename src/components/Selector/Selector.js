@@ -10,7 +10,7 @@ export default {
 
         value: {
             type: String | Array,
-            default: '' | []
+            default: null | []
         },
 
         options: {
@@ -20,7 +20,7 @@ export default {
 
         id: {
             type: String,
-            default: ''
+            default: null
         }
     },
 
@@ -66,6 +66,9 @@ export default {
         active() {
             return this.optionsArr.find(el => el.active)
         },
+        highlight() {
+            return this.optionsArr.find(el => el.highlight)
+        },
         currentSelected() {
             return this.active.val
         }
@@ -86,10 +89,12 @@ export default {
 
             this.optionsArr = this.options.map((el,index) => {
                 let id = el.hasOwnProperty('id') ? el.id : index;
-
+                let active = isValEmpty ? index === 0 : this.value.id === el.id;
                 return {
                     id: id,
-                    active: isValEmpty ? index === 0 : this.value.id === el.id,
+                    num: index,
+                    highlight: active,
+                    active: active,
                     val: typeof el === 'object' ? el[this.valuePropName] : el
                 }
             })
@@ -118,6 +123,45 @@ export default {
             if(this.active.id !== el.id) {
                 this.active.active = false;
                 el.active = true;
+            }
+        },
+
+        highlightOption({ id, val}){
+            let el;
+
+            if(id != null) {
+                el = this.optionsArr.find(el => el.id === id)
+            } else {
+                el = this.optionsArr.find(el => el.val === val[this.valuePropName])
+            }
+
+            if(el == null) {
+                return false;
+            }
+
+            if(this.highlightOption.id !== el.id) {
+                this.highlight.highlight = false;
+                el.highlight = true;
+            }
+        },
+
+        selectHighlighted() {
+            if(!this.highlight || !this.active) {
+                return false;
+            }
+
+            if(this.highlight.id !== this.active.id) {
+                this.selectOption({id: this.highlight.id});
+            }
+        },
+
+        highlightSelected() {
+            if(!this.highlight || !this.active) {
+                return false;
+            }
+
+            if(this.highlight.id !== this.active.id) {
+                this.highlightOption({id: this.active.id});
             }
         },
 
@@ -150,6 +194,8 @@ export default {
             if(this.isOpened) {
                 this.isOpened = false
             }
+
+            this.highlightSelected();
         },
 
         itemsClick(e) {
@@ -162,6 +208,42 @@ export default {
 
                 this.close();
             });
+        },
+
+        highlightNextOption() {
+            let nextNum = this.highlight.num < this.optionsArr.length-1 ? this.highlight.num + 1 : 0;
+            let next = this.optionsArr.find(el => el.num === nextNum);
+            this.highlightOption({id: next.id});
+        },
+
+        highlightPrevOption() {
+            let prevNum = this.highlight.num > 0 ? this.highlight.num - 1 : this.optionsArr.length-1;
+            let prev = this.optionsArr.find(el => el.num === prevNum);
+            this.highlightOption({id: prev.id});
+        },
+
+
+        onKeyDown({keyCode}) {
+            switch (keyCode) {
+                //вверх
+                case 38:
+                    this.highlightPrevOption();
+                    break;
+                //вниз
+                case 40:
+                    this.highlightNextOption();
+                    break;
+                //enter
+                case 13:
+                    this.selectHighlighted();
+                    this.updateValue();
+                    this.close();
+                    break;
+                //escape
+                case 27:
+                    this.close();
+                    break;
+            }
         }
     }
 };

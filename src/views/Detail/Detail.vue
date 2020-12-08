@@ -1,63 +1,55 @@
 <template>
-    <div class="detail">
+    <div class="detail" :class="{ 'detail--collapsed': collapsed }">
         <div class="detail__top">
             <h1 class="detail__title">Верификация</h1>
+            <button class="btn btn--outline detail__submit-btn" @click="onSubmit">отправить на доработку</button>
         </div>
 
         <div class="detail__conditions">
-            <div class="data-block">
-                <div class="data-block__list">
+            <div class="data-block data-block--vertical">
+                <div class="data-block__inner">
                     <div class="data-block__item">
                         <p class="data-block__title">{{ organization_name }}</p>
-                        <div class="data-block__subtitle">Заявка на верификацию от {{ created_at }}</div>
+                        <p class="data-block__subtitle">Заявка на верификацию от {{ created_at }}</p>
                     </div>
-                    <div class="data-block__item row">
-                        <div class="data-block__item col col--6 col-sm--12">
+                    <div class="data-block__item data-block__item--list">
+                        <div class="data-block__item">
                             <p class="data-block__title data-block__title--small">Сроки выполнения</p>
-                            <div class="data-block__subtitle data-block__subtitle--small">
-                                Необходимо принять решение по заявке до {{ expired_at }}</div>
+                            <p class="data-block__subtitle data-block__subtitle--small">
+                                Необходимо принять решение до {{ expired_at }}</p>
                         </div>
-                        <div class="data-block__item col col--6 col-sm--12">
+                        <div class="data-block__item">
                             <p class="data-block__title data-block__title--small">Координатор</p>
-                            <div class="data-block__subtitle data-block__subtitle--small">
+                            <p class="data-block__subtitle data-block__subtitle--small">
                                 {{ coordinator.full_name }}
-                                <span @click="toggleModal">Изменить</span>
-                            </div>
+                                <span @click="toggleModal" class="data-block__link">Изменить</span>
+                            </p>
                         </div>
                     </div>
                 </div>
-                <span class="btn btn--outline detail__submit-btn" @click="onSubmit">отправить на доработку</span>
+                <button class="btn btn--outline data-block__submit-btn" @click="onSubmit">отправить на доработку</button>
             </div>
         </div>
 
         <div class="detail__contacts">
-            <div class="data-block">
+            <div class="data-block data-block--horizontal">
                 <p class="data-block__head-title">Контактная информация</p>
-                <div class="data-block__item">
-                    <div class="row row--no-gap">
-                        <div class="col col--5 col-sm--12">
-                            <p class="data-block__title data-block__title--small">Имя</p>
-                        </div>
-                        <div class="col col--7 col-sm--12">
-                            <div class="data-block__subtitle">{{ contact_name }}</div>
-                        </div>
+                <div class="data-block__inner">
+                    <div class="data-block__item">
+                        <p class="data-block__title data-block__title--small">Имя</p>
+                        <p class="data-block__subtitle">{{ contact_name }}</p>
                     </div>
-                </div>
-                <div class="data-block__item">
-                    <div class="row row--no-gap">
-                        <div class="col col--5 col-sm--12">
-                            <p class="data-block__title data-block__title--small">Email</p>
-                        </div>
-                        <div class="col col--7 col-sm--12">
-                            <div class="data-block__subtitle">{{ contact_email }}</div>
-                        </div>
+                    <div class="data-block__item">
+                        <p class="data-block__title data-block__title--small">Email</p>
+                        <p class="data-block__subtitle">
+                            <a class="data-block__link2" :href="'mailto:'+contact_email">{{ contact_email }}</a>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
 
         <Modal
-            :coordinatorList="coordinatorList"
             :coordinator="coordinator"
             :showModal="showModal"
             @submit="changeCoordinator"

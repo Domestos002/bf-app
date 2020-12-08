@@ -12,18 +12,23 @@ export default {
         Selector
     },
 
+    props: {
+        collapsed: {
+            type: Boolean,
+            default: false
+        }
+    },
+
     data() {
       return {
-          coordinatorList: [],
-          contact_name: '',
-          contact_email: '',
+          contact_name: null,
+          contact_email: null,
           coordinator: {},
-          oldCoordinator: null,
-          created_at: '',
-          expired_at: '',
-          updated_at: '',
-          organization_name: '',
-          status: '',
+          created_at: null,
+          expired_at: null,
+          updated_at: null,
+          organization_name: null,
+          status: null,
           showModal: false
       }
     },
@@ -35,7 +40,6 @@ export default {
     methods: {
         getData() {
             this.getVerifications();
-            this.getCoordinators();
         },
 
         getVerifications() {
@@ -54,26 +58,25 @@ export default {
                 this.created_at = formatDate(this.created_at);
                 this.updated_at = formatDate(this.updated_at);
                 this.expired_at = formatDate(this.expired_at);
-                this.oldCoordinator = this.coordinator;
             });
         },
 
-        getCoordinators() {
-            axios({
-                method: 'get',
-                url: `${settings.apiAddress}/coordinator`,
-            })
-            .then(response => this.coordinatorList = response.data.data);
-        },
 
-        updateCoordinator(val) {
+        updateCoordinator(coordinator = null, status = null) {
+            let data = {};
+
+            if(coordinator) {
+                data.coordinator = coordinator
+            }
+
+            if(status) {
+                data.status = status
+            }
+
             axios({
                 method: 'put',
                 url: `${settings.apiAddress}/verification/${this.$attrs.id}`,
-                data: {
-                    coordinator: val,
-                    status: 1,
-                }
+                data: data
             })
             .then(response => {
                 if(response.status === 200) {
@@ -89,14 +92,16 @@ export default {
         },
 
         changeCoordinator(val) {
-            this.coordinator = val;
             this.toggleModal();
+            this.coordinator = val;
+            this.updateCoordinator(val);
         },
 
         onSubmit() {
-            if(this.oldCoordinator.id !== this.coordinator.id) {
-                this.updateCoordinator(this.coordinator);
-                this.oldCoordinator = this.coordinator;
+            if(this.status.val === 0) {
+                this.updateCoordinator(null, 1);
+            } else {
+                this.$toast.info('Уже на доработке')
             }
         }
     }

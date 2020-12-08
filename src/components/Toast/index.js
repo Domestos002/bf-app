@@ -16,6 +16,13 @@ const Toasts = {
                     message: message,
                     type: 'error'
                 });
+            },
+
+            info(message) {
+                EventBus.$emit("toast-message", {
+                    message: message,
+                    type: 'info'
+                });
             }
         };
 
