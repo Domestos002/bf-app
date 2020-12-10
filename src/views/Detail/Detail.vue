@@ -9,20 +9,24 @@
             <div class="data-block data-block--vertical">
                 <div class="data-block__inner">
                     <div class="data-block__item">
-                        <p class="data-block__title">{{ organization_name }}</p>
-                        <p class="data-block__subtitle">Заявка на верификацию от {{ created_at }}</p>
+                        <p class="data-block__title" :class="{ 'loading': !organization_name }">
+                            {{ organization_name }}
+                        </p>
+                        <p class="data-block__subtitle" :class="{ 'loading': !created_at }">
+                            Заявка на верификацию от {{ created_at }}</p>
                     </div>
                     <div class="data-block__item data-block__item--list">
                         <div class="data-block__item">
                             <p class="data-block__title data-block__title--small">Сроки выполнения</p>
-                            <p class="data-block__subtitle data-block__subtitle--small">
-                                Необходимо принять решение до {{ expired_at }}</p>
+                            <p class="data-block__subtitle data-block__subtitle--small" :class="{ 'loading': !expired_at }">
+                                Необходимо принять решение до {{ expired_at }}
+                            </p>
                         </div>
                         <div class="data-block__item">
                             <p class="data-block__title data-block__title--small">Координатор</p>
-                            <p class="data-block__subtitle data-block__subtitle--small">
+                            <p class="data-block__subtitle data-block__subtitle--small" :class="{ 'loading': !coordinator.full_name }">
                                 {{ coordinator.full_name }}
-                                <span @click="toggleModal" class="data-block__link">Изменить</span>
+                                <span @click="toggleModal" class="data-block__link" v-if="coordinator.full_name">Изменить</span>
                             </p>
                         </div>
                     </div>
@@ -37,11 +41,12 @@
                 <div class="data-block__inner">
                     <div class="data-block__item">
                         <p class="data-block__title data-block__title--small">Имя</p>
-                        <p class="data-block__subtitle">{{ contact_name }}</p>
+                        <p class="data-block__subtitle" :class="{ 'loading': !contact_name }">
+                            {{ contact_name }}</p>
                     </div>
                     <div class="data-block__item">
                         <p class="data-block__title data-block__title--small">Email</p>
-                        <p class="data-block__subtitle">
+                        <p class="data-block__subtitle" :class="{ 'loading': !contact_name }">
                             <a class="data-block__link2" :href="'mailto:'+contact_email">{{ contact_email }}</a>
                         </p>
                     </div>
