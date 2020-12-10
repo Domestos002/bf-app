@@ -23,12 +23,17 @@ export default {
     },
 
     mounted() {
+        if(this.$route.query.page != null) {
+            this.meta.current_page = this.$route.query.page;
+        }
+
         this.getPage(this.meta.current_page)
     },
     methods: {
         changePage(num) {
             this.getPage(num);
-            this.meta.current_page = num
+            this.meta.current_page = num;
+            this.$router.push({ path: this.$route.path, query: { page: num }});
         },
 
         getPage(num) {
